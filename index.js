@@ -47,7 +47,7 @@ const PORT = process.env.CHAT_PORT || 4000;
 const server = http.createServer();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
 io.attach(server);
@@ -89,7 +89,10 @@ socketAuth(io, {
   disconnect: socket => {
     console.log(`Socket ${socket.id} disconnected.`);
   },
-})
+});
+
+const routes = require('./routes');
+routes(app);
 
 app.listen(3000, () => { console.log('Express server listening at: ' + 3000)});
 server.listen(PORT, () => { console.log('Socket.io server listening at: ' + PORT) });

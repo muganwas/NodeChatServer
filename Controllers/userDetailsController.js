@@ -8,11 +8,7 @@ const socketAuth = require("socketio-auth");
 // Fetch all users
 var users = {};
 
-var uI; 
-
-io.on("connection", socket => {
-  uI = socket.id;
-});
+var uI;
 
 userDetails.find({}, (err, mongoUsers) => {
   if (err) 
