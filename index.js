@@ -49,7 +49,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 const routes = require('./routes');
 routes(app);
-const server = app.listen(PORT, () => { console.log('Express server listening at: ' + 3000)});
+const server = app.listen(PORT, () => { console.log('Express server listening at: ' + PORT)});
 io.attach(server);
 
 // firebase authontication
