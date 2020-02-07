@@ -34,6 +34,7 @@ const bodyParser = require('body-parser');
 const io = require('socket.io')();
 const socketAuth = require('socketio-auth');
 const admin = require("firebase-admin");
+const cors = require('cors');
 
 const serviceAccount = require("./adminsdk.js").vars;
 const jsonServiceAcount = JSON.parse(JSON.stringify(serviceAccount));
@@ -46,7 +47,8 @@ const PORT = process.env.CHAT_PORT || 4000;
 const server = http.createServer();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(cors());
 
 io.attach(server);
 
