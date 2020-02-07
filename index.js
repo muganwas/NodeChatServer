@@ -29,6 +29,8 @@ app.listen(api_port, () => {
 });*/
 require('dotenv').config();
 const http = require('http');
+const app = require('express')();
+const bodyParser = require('body-parser');
 const io = require('socket.io')();
 const socketAuth = require('socketio-auth');
 const admin = require("firebase-admin");
@@ -42,6 +44,9 @@ admin.initializeApp({
 
 const PORT = process.env.CHAT_PORT || 4000;
 const server = http.createServer();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}))
 
 io.attach(server);
 
@@ -84,4 +89,5 @@ socketAuth(io, {
   },
 })
 
+app.listen(3000);
 server.listen(PORT);
