@@ -89,5 +89,5 @@ socketAuth(io, {
   },
 })
 
-app.listen(3000);
-server.listen(PORT);
+app.listen(3000, () => { console.log('Express server listening at: ' + 3000)});
+server.listen(PORT, () => { console.log('Socket.io server listening at: ' + PORT) });
