@@ -28,8 +28,9 @@ app.listen(api_port, () => {
   console.log("Chat API up @ " + api_port);
 });*/
 require('dotenv').config();
-//const http = require('http');
-const app = require('express')();
+const path = require('path')
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const io = require('socket.io')();
 const socketAuth = require('socketio-auth');
@@ -44,6 +45,7 @@ admin.initializeApp({
 });
 
 const PORT = process.env.CHAT_PORT;
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
