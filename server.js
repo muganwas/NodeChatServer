@@ -32,7 +32,6 @@ const path = require('path')
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const io = require('socket.io')();
 const socketAuth = require('socketio-auth');
 const admin = require("firebase-admin");
 const cors = require('cors');
@@ -51,8 +50,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 const routes = require('./routes');
 routes(app);
-const server = app.listen(PORT, () => { console.log('Express server listening at: ' + PORT)});
-io.attach(server);
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server)
 
 // firebase authontication
 const verifyUser = async token => {
@@ -92,3 +91,4 @@ socketAuth(io, {
     console.log(`Socket ${socket.id} disconnected.`);
   },
 });
+server.listen(PORT);
