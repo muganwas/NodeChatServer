@@ -43,7 +43,7 @@ admin.initializeApp({
   databaseURL: "https://kilembe-school.firebaseio.com"
 });
 
-const PORT = process.env.CHAT_PORT || 4000;
+const PORT = process.env.CHAT_PORT;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
