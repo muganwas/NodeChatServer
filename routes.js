@@ -2,13 +2,13 @@
 module.exports = app => {
     // var details = require('./Controllers/userDetailsController');
     //details routes
-    app.route('/api/v1/user')
+    app.route('/')
         .post((req, res) => {
-            console.log(req)
+            // console.log(req)
             res.json({message:'received'})
         })
         .get((req, res) => {
-            console.log(req);
+            // console.log(req);
             res.json({message:'received'})
         });
 }

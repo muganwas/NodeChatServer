@@ -28,7 +28,7 @@ app.listen(api_port, () => {
   console.log("Chat API up @ " + api_port);
 });*/
 require('dotenv').config();
-const http = require('http');
+//const http = require('http');
 const app = require('express')();
 const bodyParser = require('body-parser');
 const io = require('socket.io')();
@@ -44,12 +44,12 @@ admin.initializeApp({
 });
 
 const PORT = process.env.CHAT_PORT || 4000;
-const server = http.createServer();
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
-
+const routes = require('./routes');
+routes(app);
+const server = app.listen(PORT, () => { console.log('Express server listening at: ' + 3000)});
 io.attach(server);
 
 // firebase authontication
@@ -90,9 +90,3 @@ socketAuth(io, {
     console.log(`Socket ${socket.id} disconnected.`);
   },
 });
-
-const routes = require('./routes');
-routes(app);
-
-app.listen(3000, () => { console.log('Express server listening at: ' + 3000)});
-server.listen(PORT, () => { console.log('Socket.io server listening at: ' + PORT) });
