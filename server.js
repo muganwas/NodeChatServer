@@ -91,4 +91,8 @@ socketAuth(io, {
     console.log(`Socket ${socket.id} disconnected.`);
   },
 });
+
+io.sockets.on('connection', socket => {
+  console.log('bs')
+})
 server.listen(PORT);
