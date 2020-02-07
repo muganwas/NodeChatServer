@@ -33,10 +33,10 @@ const io = require('socket.io')();
 const socketAuth = require('socketio-auth');
 const admin = require("firebase-admin");
 
-const serviceAccount = require("./adminsdk.json");
-
+const serviceAccount = require("./adminsdk.js").vars;
+const jsonServiceAcount = JSON.parse(JSON.stringify(serviceAccount));
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(jsonServiceAcount),
   databaseURL: "https://kilembe-school.firebaseio.com"
 });
 
